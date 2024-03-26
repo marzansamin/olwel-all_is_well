@@ -138,7 +138,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className='mt-2 flex flex-col text-left'>
+    <div className='mt-2 flex flex-col text-left h-screen overflow-y-auto'>
             <ul>
               {routes.map((route, index) => (
                 <React.Fragment key={index}>
