@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Playfair Display", serif;
+  src: url();
+  font-optical-sizing: auto
+}

@@ -9,13 +9,6 @@
   box-sizing: border-box;
 }
 
-.playfair-display-<uniquifier> {
-  font-family: "Playfair Display", serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
-}
-
 #root {
   max-width: 100%;
   margin: 0 auto;
