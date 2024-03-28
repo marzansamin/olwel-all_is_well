@@ -6,14 +6,14 @@ import { CiUser } from "react-icons/ci";
 import { GoClock } from "react-icons/go";
 import { GoStack } from "react-icons/go";
 import { GoCheck } from "react-icons/go";
-import { FiCreditCard } from "react-icons/fi";
 import { BiNotepad } from "react-icons/bi";
 import { CgChevronDown } from "react-icons/cg";
+import { CiTempHigh } from "react-icons/ci";
 import { useState } from 'react'
 
 const routes = [
   {
-    path: "/admin-home",
+    path: "/dashboard",
     name: "Dashboard",
     icon: <CiCompass1 />,
   },
@@ -23,11 +23,11 @@ const routes = [
     subroute: true,
     subRoutes: [
       {
-        path: "/admin-home/doctors",
-        name: "Doctor's List ",
+        path: "/dashboard/doctors",
+        name: "Doctor List",
       },
       {
-        path: "/admin-home/add-doctor",
+        path: "/dashboard/add-doctor",
         name: "Add Doctor",
       },
     ],
@@ -38,11 +38,11 @@ const routes = [
     subroute: true,
     subRoutes: [
       {
-        path: "/admin-home/patient",
-        name: "Patient's List ",
+        path: "/dashboard/patient",
+        name: "Patient List",
       },
       {
-        path: "/admin-home/add-patient",
+        path: "/dashboard/add-patient",
         name: "Add Patient",
       },
     ],
@@ -53,11 +53,11 @@ const routes = [
     subroute: true,
     subRoutes: [
       {
-        path: "/admin-home/departments",
-        name: "Departments's List ",
+        path: "/dashboard/departments",
+        name: "Departments List",
       },
       {
-        path: "/admin-home/add-departments",
+        path: "/dashboard/add-departments",
         name: "Add Departments",
       },
     ],
@@ -68,11 +68,11 @@ const routes = [
     subroute: true,
     subRoutes: [
       {
-        path: "/admin-home/schedule",
-        name: "Schedule List ",
+        path: "/dashboard/schedule",
+        name: "Schedule List",
       },
       {
-        path: "/admin-home/add-departments",
+        path: "/dashboard/add-departments",
         name: "Add Schedule",
       },
     ],
@@ -83,27 +83,27 @@ const routes = [
     subroute: true,
     subRoutes: [
       {
-        path: "/admin-home/appointment",
-        name: "Appointment List ",
+        path: "/dashboard/appointment",
+        name: "Appointment List",
       },
       {
-        path: "/admin-home/add-departments",
+        path: "/dashboard/add-departments",
         name: "Add Appointment",
       },
     ],
   },
   {
-    name: "Payment",
-    icon: <FiCreditCard />,
+    name: "Prescription",
+    icon: <CiTempHigh />,
     subroute: true,
     subRoutes: [
       {
-        path: "/admin-home/payment",
-        name: "Payment List ",
+        path: "/dashboard/precription",
+        name: "Prescription List",
       },
       {
-        path: "/admin-home/add-payment",
-        name: "Add Payment",
+        path: "/dashboard/add-precription",
+        name: "Add Prescription",
       },
     ],
   },
@@ -113,11 +113,11 @@ const routes = [
     subroute: true,
     subRoutes: [
       {
-        path: "/admin-home/reports",
-        name: "Reports List ",
+        path: "/dashboard/reports",
+        name: "Reports List",
       },
       {
-        path: "/admin-home/add-report",
+        path: "/dashboard/add-report",
         name: "Add Report",
       },
     ],
@@ -133,7 +133,7 @@ const Sidebar = () => {
     setOpenMenuIndex((prevIndex) => (prevIndex === index ? -1 : index));
   };
 
-  const handleMenuClick = (path) => {
+  const handleMenuClick = (path) => {0
     navigate(path);
   };
 
@@ -142,7 +142,7 @@ const Sidebar = () => {
             <ul>
               {routes.map((route, index) => (
                 <React.Fragment key={index}>
-                  <li className="flex items-center text-lg text-[#435334] rounded-lg cursor-pointer hover:bg-[#435334] hover:shadow-md hover:text-white py-4 px-12"
+                  <li className="flex items-center text-lg text-[#F1F1F1] rounded-lg cursor-pointer hover:bg-[#0091D5] hover:shadow-md hover:text-white py-4 px-12"
                     onClick={() => {handleMenuClick(route.path); toggleSubMenu(index);}}>
                     {route.icon && React.cloneElement(route.icon, { className: "mr-2 w-7 h-7" })}
                     {route.name}
@@ -151,7 +151,7 @@ const Sidebar = () => {
                   {route.subRoutes && openMenuIndex === index && (
                     <ul>
                       {route.subRoutes.map((subRoute, subIndex) => (
-                        <li key={subIndex} className="flex items-center text-base text-[#435334] rounded-lg cursor-pointer hover:bg-[#435334] hover:shadow-md hover:text-white py-2 px-12" onClick={() => handleMenuClick(subRoute.path)}>{subRoute.name}</li>
+                        <li key={subIndex} className="flex items-center text-base text-[#F1F1F1] rounded-lg cursor-pointer hover:bg-[#0091D5] hover:shadow-md hover:text-white py-2 px-12" onClick={() => handleMenuClick(subRoute.path)}>{subRoute.name}</li>
                       ))}
                     </ul>
                   )}

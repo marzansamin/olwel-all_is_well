@@ -4,18 +4,28 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 //pages
 import Auth from './pages/Auth';
 import AdminHome from './pages/AdminHome';
-import DoctorHome from './pages/DoctorHome';
-import PatientHome from './pages/PatientHome';
+import AdminPanel from './pages/AdminPanel';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
     <>
+      <ToastContainer
+        position='top-center'
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Auth />} />
-          <Route path='/admin-home' element={<AdminHome />} />         
-          <Route path='/doctor-home' element={<DoctorHome />} />
-          <Route path='/patient-home' element={<PatientHome />} />
+          <Route path='/dashboard' element={<AdminHome />} />         
+          <Route path='/dashboard/admin-panel' element={<AdminPanel />} />
         </Routes>
       </BrowserRouter>
     </>
