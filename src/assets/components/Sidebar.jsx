@@ -20,107 +20,114 @@ const routes = [
   {
     name: "Doctors",
     icon: <CiMedicalClipboard />,
-    subroute: true,
-    subRoutes: [
-      {
-        path: "/dashboard/doctors",
-        name: "Doctor List",
-      },
-      {
-        path: "/dashboard/add-doctor",
-        name: "Add Doctor",
-      },
-    ],
+    path: "/dashboard/doctors",
+    // subroute: true,
+    // subRoutes: [
+    //   {
+    //     path: "/dashboard/doctors",
+    //     name: "Doctor List",
+    //   },
+    //   {
+    //     path: "/dashboard/add-doctor",
+    //     name: "Add Doctor",
+    //   },
+    // ],
   },
   {
     name: "Patients",
     icon: <CiUser />,
-    subroute: true,
-    subRoutes: [
-      {
-        path: "/dashboard/patient",
-        name: "Patient List",
-      },
-      {
-        path: "/dashboard/add-patient",
-        name: "Add Patient",
-      },
-    ],
+    path: "/dashboard/patients",
+    // subroute: true,
+    // subRoutes: [
+    //   {
+    //     path: "/dashboard/patient",
+    //     name: "Patient List",
+    //   },
+    //   {
+    //     path: "/dashboard/add-patient",
+    //     name: "Add Patient",
+    //   },
+    // ],
   },
   {
     name: "Departments",
     icon: <GoStack />,
-    subroute: true,
-    subRoutes: [
-      {
-        path: "/dashboard/departments",
-        name: "Departments List",
-      },
-      {
-        path: "/dashboard/add-departments",
-        name: "Add Departments",
-      },
-    ],
+    path: "/dashboard/departments",
+    // subroute: true,
+    // subRoutes: [
+    //   {
+    //     path: "/dashboard/departments",
+    //     name: "Departments List",
+    //   },
+    //   {
+    //     path: "/dashboard/add-departments",
+    //     name: "Add Departments",
+    //   },
+    // ],
   },
   {
     name: "Doctor Schedule",
     icon: <GoClock />,
-    subroute: true,
-    subRoutes: [
-      {
-        path: "/dashboard/schedule",
-        name: "Schedule List",
-      },
-      {
-        path: "/dashboard/add-departments",
-        name: "Add Schedule",
-      },
-    ],
+    path: "/dashboard/doctors-schedule",
+    // subroute: true,
+    // subRoutes: [
+    //   {
+    //     path: "/dashboard/schedule",
+    //     name: "Schedule List",
+    //   },
+    //   {
+    //     path: "/dashboard/add-departments",
+    //     name: "Add Schedule",
+    //   },
+    // ],
   },
   {
     name: "Appointment",
     icon: <GoCheck />,
-    subroute: true,
-    subRoutes: [
-      {
-        path: "/dashboard/appointment",
-        name: "Appointment List",
-      },
-      {
-        path: "/dashboard/add-departments",
-        name: "Add Appointment",
-      },
-    ],
+    path: "/dashboard/appointments",
+    // subroute: true,
+    // subRoutes: [
+    //   {
+    //     path: "/dashboard/appointment",
+    //     name: "Appointment List",
+    //   },
+    //   {
+    //     path: "/dashboard/add-departments",
+    //     name: "Add Appointment",
+    //   },
+    // ],
   },
   {
     name: "Prescription",
     icon: <CiTempHigh />,
-    subroute: true,
-    subRoutes: [
-      {
-        path: "/dashboard/precription",
-        name: "Prescription List",
-      },
-      {
-        path: "/dashboard/add-precription",
-        name: "Add Prescription",
-      },
-    ],
+    path: "/dashboard/prescriptions",
+    // subroute: true,
+    // subRoutes: [
+    //   {
+    //     path: "/dashboard/precription",
+    //     name: "Prescription List",
+    //   },
+    //   {
+    //     path: "/dashboard/add-precription",
+    //     name: "Add Prescription",
+    //   },
+    // ],
   },
   {
     name: "Reports",
     icon: <BiNotepad />,
-    subroute: true,
-    subRoutes: [
-      {
-        path: "/dashboard/reports",
-        name: "Reports List",
-      },
-      {
-        path: "/dashboard/add-report",
-        name: "Add Report",
-      },
-    ],
+    path: "/dashboard/reports",
+    // subroute: true,
+    // subRoutes: [
+    //   {
+    //     path: "/dashboard/reports",
+    //     name: "Reports List",
+    //   },
+    //   {
+    //     path: "/dashboard/add-report",
+    //     name: "Add Report",
+    //   },
+    // ],
   },
 ];
 

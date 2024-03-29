@@ -1,11 +1,13 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'antd/dist/reset.css'
 
 //pages
 import Auth from './pages/Auth';
 import AdminHome from './pages/AdminHome';
 import AdminPanel from './pages/AdminPanel';
-import { ToastContainer } from 'react-toastify';
+import Departments from './pages/Departments'
 
 function App() {
   return (
@@ -26,6 +28,7 @@ function App() {
           <Route path='/' element={<Auth />} />
           <Route path='/dashboard' element={<AdminHome />} />         
           <Route path='/dashboard/admin-panel' element={<AdminPanel />} />
+          <Route path='/dashboard/departments' element={<Departments />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,7 +9,6 @@ import ModalBox from '../assets/components/ModalBox';
 
 const Auth = () => {
   const [showModal, setShowModal] = useState(false);
-  const [toggle, setToggle] = useState(false);
   const [hasAccount, sethasAccount] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -17,7 +16,13 @@ const Auth = () => {
   const navigate = useNavigate();
   const userName = localStorage.getItem('email') ? localStorage.getItem('email') : 'admin@gmail.com';
   const userPassword = localStorage.getItem('password') ? localStorage.getItem('password') : 'admin';
-  const userName_ = localStorage.getItem('name');
+  const [admins, setAdmins] = useState([]);
+
+  useEffect(() => {
+    const storedAdmins = JSON.parse(localStorage.getItem('admins')) || [];
+    setAdmins(storedAdmins.map(admin => ({ ...admin, active: true }))); 
+  }, []);
+
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -30,31 +35,45 @@ const Auth = () => {
     e.preventDefault();
     if(email === userName && password === userPassword){
       toast.success("Login Successful!")
+      handleCloseModal()
       navigate('/dashboard')
     }else{
       toast.error("Invalid Email OR Password");
     }
   };  
 
-  const handleSubmitRegister= (e) => {
+  const handleSubmitRegister = (e) => {
     e.preventDefault();
-    if (email === "") {
+    if (name === "") {
+      toast.error("Name Is Required");
+    } else if (email === "") {
       toast.error("Email Is Required");
     } else if (password === "") {
       toast.error("Password Is Required");
     } else {
-      // Get existing admins from local storage or initialize an empty array
       const existingAdmins = JSON.parse(localStorage.getItem('admins')) || [];
-      // Add the new admin to the array
-      const newAdmin = { name, email, password };
-      const updatedAdmins = [newAdmin, ...existingAdmins];
-      // Store the updated array back to local storage
-      localStorage.setItem('admins', JSON.stringify(updatedAdmins));
-      toast.success("Registration Successful!");
-      navigate('/dashboard');
-      handleCloseModal();
+      if (existingAdmins.length === 0) {
+        const newAdmin = { name, email, password, role: 'Super Admin', active: true };
+        localStorage.setItem('admins', JSON.stringify([newAdmin]));
+        toast.success("Super Admin Registration Successful!");
+        navigate('/dashboard');
+        handleCloseModal();
+      } else {
+        const emailExists = existingAdmins.some(admin => admin.email === email);
+        if (!emailExists) {
+          const newAdmin = { name, email, password, role: 'Subordinate', active: true };
+          const updatedAdmins = [...existingAdmins, newAdmin];
+          localStorage.setItem('admins', JSON.stringify(updatedAdmins));
+          toast.success("Subordinate Admin Registration Successful!");
+          navigate('/dashboard');
+          handleCloseModal();
+        } else {
+          toast.error("Email Already In Use");
+        }
+      }
     }
-  }
+  };
+  
 
   return (
     <Fragment>

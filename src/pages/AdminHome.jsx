@@ -5,7 +5,6 @@ import Sidebar from '../assets/components/Sidebar';
 import Breadcrumbs from "../assets/components/Breadcrumbs";
 
 const AdminHome = () => { 
-  const userName_ = localStorage.getItem('name')
   return (
     <div className="w-full h-fit overflow-hidden bg-[#F1F1F1] flex flex-col">
         {/* Navbar */}
@@ -20,7 +19,7 @@ const AdminHome = () => {
               </div>
               <div className='text-left'>
                 <h3 className='text-2xl text-[#F1F1F1]'>Admin</h3>
-                <span className='opacity-70 text-lg text-[#F1F1F1]'>{userName_}</span>
+                <span className='opacity-70 text-lg text-[#F1F1F1]'></span>
               </div>
             </div>
             {/* Sidebar Items */}
