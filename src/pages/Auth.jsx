@@ -33,10 +33,16 @@ const Auth = () => {
 
   const handleSubmitLogin = (e) => {
     e.preventDefault();
-    if(email === userName && password === userPassword){
-      toast.success("Login Successful!")
-      handleCloseModal()
-      navigate('/dashboard')
+    const existingAdmins = JSON.parse(localStorage.getItem('admins')) || [];
+    const user = existingAdmins.find(admin => admin.email === email && admin.password === password);
+    if(user){
+      if(!user.active){
+        toast.error("Your Account Is Inactive. Please Contact Support For Assistance.");
+      }else{
+        toast.success("Login Successful!")
+        handleCloseModal()
+        navigate('/dashboard')
+      }
     }else{
       toast.error("Invalid Email OR Password");
     }

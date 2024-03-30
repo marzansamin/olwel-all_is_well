@@ -8,6 +8,7 @@ import Auth from './pages/Auth';
 import AdminHome from './pages/AdminHome';
 import AdminPanel from './pages/AdminPanel';
 import Departments from './pages/Departments'
+import Doctors from './pages/Doctors';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path='/dashboard' element={<AdminHome />} />         
           <Route path='/dashboard/admin-panel' element={<AdminPanel />} />
           <Route path='/dashboard/departments' element={<Departments />} />
+          <Route path='/dashboard/doctors' element={<Doctors />} />
         </Routes>
       </BrowserRouter>
     </>

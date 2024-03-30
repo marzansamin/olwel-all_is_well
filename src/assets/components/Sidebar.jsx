@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useNavigate } from 'react-router-dom'
 import React from 'react';
 import { CiCompass1 } from "react-icons/ci";
@@ -113,22 +114,22 @@ const routes = [
     //   },
     // ],
   },
-  {
-    name: "Reports",
-    icon: <BiNotepad />,
-    path: "/dashboard/reports",
-    // subroute: true,
-    // subRoutes: [
-    //   {
-    //     path: "/dashboard/reports",
-    //     name: "Reports List",
-    //   },
-    //   {
-    //     path: "/dashboard/add-report",
-    //     name: "Add Report",
-    //   },
-    // ],
-  },
+  // {
+  //   name: "Reports",
+  //   icon: <BiNotepad />,
+  //   path: "/dashboard/reports",
+  //   // subroute: true,
+  //   // subRoutes: [
+  //   //   {
+  //   //     path: "/dashboard/reports",
+  //   //     name: "Reports List",
+  //   //   },
+  //   //   {
+  //   //     path: "/dashboard/add-report",
+  //   //     name: "Add Report",
+  //   //   },
+  //   // ],
+  // },
 ];
 
 

@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable no-unused-vars */
 import { FcBusinessman } from "react-icons/fc";
 import Navbar from '../assets/components/Navbar';

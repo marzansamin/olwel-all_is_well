@@ -29,7 +29,7 @@ const AdminHome = () => {
           <div className="flex flex-col p-4 w-[80%]">
             <Breadcrumbs />
             {/* card section */}
-            <div className='grid grid-cols-4 gap-6'>
+            <div className='grid grid-cols-4 gap-6 mt-5'>
               <div className="rounded-md bg-slate-300">
                 1
               </div>
