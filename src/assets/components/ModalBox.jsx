@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-const ModalBox = ({isVisible, onClose, children, onSubmit}) => {
+const ModalBox = ({isVisible, onClose, children}) => {
   if(!isVisible) return;
 
   const handleClose = (e) => {
@@ -12,9 +12,9 @@ const ModalBox = ({isVisible, onClose, children, onSubmit}) => {
       <div className="w-[500px] flex flex-col">
         <button onClick={onClose} className="text-white text-2xl font-bold place-self-end">X</button>
         <div className="bg-white p-2 rounded">
-          <form onSubmit={onSubmit}>
+          {/* <form> */}
             {children}
-          </form>
+          {/* </form> */}
         </div>
       </div>
     </div>

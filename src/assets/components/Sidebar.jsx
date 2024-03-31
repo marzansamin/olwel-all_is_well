@@ -66,22 +66,22 @@ const routes = [
     //   },
     // ],
   },
-  {
-    name: "Doctor Schedule",
-    icon: <GoClock />,
-    path: "/dashboard/doctors-schedule",
-    // subroute: true,
-    // subRoutes: [
-    //   {
-    //     path: "/dashboard/schedule",
-    //     name: "Schedule List",
-    //   },
-    //   {
-    //     path: "/dashboard/add-departments",
-    //     name: "Add Schedule",
-    //   },
-    // ],
-  },
+  // {
+  //   name: "Doctor Schedule",
+  //   icon: <GoClock />,
+  //   path: "/dashboard/doctor-schedule",
+  //   // subroute: true,
+  //   // subRoutes: [
+  //   //   {
+  //   //     path: "/dashboard/schedule",
+  //   //     name: "Schedule List",
+  //   //   },
+  //   //   {
+  //   //     path: "/dashboard/add-departments",
+  //   //     name: "Add Schedule",
+  //   //   },
+  //   // ],
+  // },
   {
     name: "Appointment",
     icon: <GoCheck />,
@@ -146,7 +146,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className='mt-2 flex flex-col text-left h-screen overflow-y-auto'>
+    <div className='flex flex-col text-left h-screen overflow-y-auto'>
             <ul>
               {routes.map((route, index) => (
                 <React.Fragment key={index}>

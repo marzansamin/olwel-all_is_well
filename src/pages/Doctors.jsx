@@ -7,7 +7,7 @@ import Breadcrumbs from "../assets/components/Breadcrumbs";
 import { AiOutlineSearch } from 'react-icons/ai';
 import { useState, useEffect } from "react";
 import ModalBox from "../assets/components/ModalBox";
-import { toast } from "react-toastify";
+import { toast, useToast } from "react-toastify";
 import { Switch } from "antd";
 
 export const getDepartmentNames = () => {
@@ -23,12 +23,16 @@ const Doctors = () => {
   const [open, setOpen] = useState("");
   const [doctors, setDoctors] = useState([]);
   const [search, setSearch] = useState("");
-  const departmentNames = getDepartmentNames();
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
+  const departmentNames = getDepartmentNames();  
 
   const handleCloseModal = () => {
     setShowModal(false);
     setName("");
     setDepartment("");
+    setStartTime("");
+    setEndTime("");
   }
 
   useEffect(() => {
@@ -47,6 +51,12 @@ const Doctors = () => {
       toast.error("Name Is Required");
     }else if(department === ""){
       toast.error("Department Is Required");
+    }else if(startTime === ""){
+      toast.error("Start Time Is Required");
+    }else if(endTime === ""){
+      toast.error("End Time Is Required");
+    }else if(new Date(`1970-01-01T${endTime}`) < new Date(`1970-01-01T${startTime}`)){
+      toast.error("End Time Should Be Greater Than Start Time");
     }else{
       const currentDate = new Date();
       const day = String(currentDate.getDate()).padStart(2, '0');
@@ -56,7 +66,7 @@ const Doctors = () => {
       const existingDoctors = JSON.parse(localStorage.getItem('doctors')) || [];
       const doctorExists = existingDoctors.some(doctor => doctor.name === name);
       if(!doctorExists){
-        const newDoctor = { name, department, joiningDate: formattedDate, available: true};
+        const newDoctor = { name, department, joiningDate: formattedDate, startTime, endTime, available: true};
         setDoctors(prevDoctors => [...prevDoctors, newDoctor]);
         localStorage.setItem('doctors', JSON.stringify([...doctors, newDoctor]));
         toast.success("New Doctor Added!");
@@ -124,18 +134,23 @@ const Doctors = () => {
                           <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
                           <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department</th>
                           <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Joining Date</th>
+                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time Slot</th>
                           <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">State</th>
                         </tr>
                       </thead>
                       <tbody className="bg-white divide-y divide-gray-200">
-                        {doctors.filter((index) => {
-                          return search.toLowerCase() === "" ? index : index.department.toLowerCase().includes(search), index.name.toLowerCase().includes(search)
+                        {doctors.filter((doctor) => {
+                            const searchTerm = search.toLowerCase();
+                            const nameMatches = doctor.name.toLowerCase().includes(searchTerm);
+                            const departmentMatches = doctor.department.toLowerCase().includes(searchTerm);
+                            return nameMatches || departmentMatches;
                         }).map((doctor, index) => (
                           <tr key={index} className={`${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'} ${doctor.available ? 'text-black' : 'text-gray-500'}`}>
                             <td className="px-6 py-4 whitespace-nowrap text-left">{index + 1}</td>
                             <td className="px-6 py-4 whitespace-nowrap text-left">{doctor.name}</td>
                             <td className="px-6 py-4 whitespace-nowrap text-left">{doctor.department}</td>
                             <td className="px-6 py-4 whitespace-nowrap text-left">{doctor.joiningDate}</td>
+                            <td className="px-6 py-4 whitespace-nowrap text-left">{doctor.startTime}-{doctor.endTime}</td>
                             <td className="px-4 py-4 whitespace-nowrap text-left">
                             <Switch className="ml-1 mr-3 bg-[#A5D8DD]" onClick={() => handleToggleActive(doctor.name)} checked={doctor.available} />
                             {doctor.available ? <span>Available</span> : <span>Blocked</span>}
@@ -174,6 +189,26 @@ const Doctors = () => {
                             ))
                           }
                         </ul>
+                      </div>
+                      <div>
+                        <label htmlFor="startTime" className='text-slate-400 mr-4'>Start Time</label>
+                        <input
+                          id="startTime"
+                          type="time"
+                          value={startTime}
+                          onChange={(e) => setStartTime(e.target.value)}
+                          className="p-3 shadow-md bg-slate-100 border-solid border-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="endTime" className='text-slate-400 mr-5'>End Time</label>
+                        <input
+                          id="endTime"
+                          type="time"
+                          value={endTime}
+                          onChange={(e) => setEndTime(e.target.value)}
+                          className="p-3 mt-5 shadow-md bg-slate-100 border-solid border-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
+                        />
                       </div>
                     </div>
                     <button type="submit" onClick={handleSubmit}

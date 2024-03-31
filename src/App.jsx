@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -9,6 +10,9 @@ import AdminHome from './pages/AdminHome';
 import AdminPanel from './pages/AdminPanel';
 import Departments from './pages/Departments'
 import Doctors from './pages/Doctors';
+import Patients from './pages/Patients';
+import Appointment from './pages/Appointment';
+import Prescription from './pages/Prescription';
 
 function App() {
   return (
@@ -27,10 +31,13 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Auth />} />
-          <Route path='/dashboard' element={<AdminHome />} />         
+          <Route path='/dashboard' element={<AdminPanel />} />         
           <Route path='/dashboard/admin-panel' element={<AdminPanel />} />
           <Route path='/dashboard/departments' element={<Departments />} />
           <Route path='/dashboard/doctors' element={<Doctors />} />
+          <Route path='/dashboard/patients' element={<Patients />} />
+          <Route path='/dashboard/appointments' element={<Appointment />} />
+          <Route path='/dashboard/prescriptions' element={<Prescription />} />
         </Routes>
       </BrowserRouter>
     </>

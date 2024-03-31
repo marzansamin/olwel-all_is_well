@@ -32,6 +32,7 @@ const Auth = () => {
   };
 
   const handleSubmitLogin = (e) => {
+    console.trace("Tracing On Submit");
     e.preventDefault();
     const existingAdmins = JSON.parse(localStorage.getItem('admins')) || [];
     const user = existingAdmins.find(admin => admin.email === email && admin.password === password);
@@ -49,6 +50,7 @@ const Auth = () => {
   };  
 
   const handleSubmitRegister = (e) => {
+    console.trace("Tracing On Submit");
     e.preventDefault();
     if (name === "") {
       toast.error("Name Is Required");
@@ -97,7 +99,7 @@ const Auth = () => {
         <div className="absolute top-0 left-0 w-full bg-gradient-to-tl bg-black opacity-100" />
       </div>
       {showModal && (
-        <ModalBox isVisible={showModal} onClose={() => setShowModal(false)} onSubmit={hasAccount ? handleSubmitLogin : handleSubmitRegister}>
+        <ModalBox isVisible={showModal} onClose={() => setShowModal(false)} >
           <div className='flex flex-col p-6 text-left justify-center'>
             <h3 className="text-xl font-semibold text-gray-700">{!hasAccount ? "Sign Up To See The Best Healthcare System" : "Log In To View Your Portal"}</h3>
             <div className='flex flex-col mt-6'>
@@ -107,7 +109,7 @@ const Auth = () => {
               <input placeholder='Email' type='email' className=' mt-4 p-3 shadow-md bg-slate-100 border-solid border-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500' value={email} onChange={(e) =>setEmail(e.target.value)} />
               <input placeholder='Password' type='password' className='mt-4 p-3 shadow-md bg-slate-100 border-solid border-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500' value={password} onChange={(e) =>setPassword(e.target.value)} />
             </div>
-            <button type='submit'
+            <button onClick={hasAccount ? handleSubmitLogin : handleSubmitRegister}
               className='rounded w-[200px] p-3 mt-6 text-xl bg-[#1C4E80] hover:bg-[#0091D5] text-white font-bold place-self-center'
             >
               {!hasAccount ? "Sign Up" : "Log In"}
